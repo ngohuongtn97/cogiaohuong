@@ -29,4 +29,30 @@ const routes = {
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.appRouter = new Router(routes, 'dashboard');
+
+    // Mobile Sidebar Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    const toggleMenu = () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+    };
+
+    if (menuBtn && sidebar && overlay) {
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link on mobile
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+    }
 });

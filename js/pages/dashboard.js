@@ -2,88 +2,70 @@ const DashboardPage = {
     render: async () => {
         const container = document.createElement('div');
         container.innerHTML = `
-            <div>
-                <h2>Welcome back, Student! 👋</h2>
-                <p style="color: var(--text-secondary); margin-top: 8px;">You've learned 45 new words this week. Keep it up!</p>
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h2 style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;">Learning Journey 🗺️</h2>
+                <p style="color: var(--text-secondary);">Follow the path to master English from Beginner to Advanced.</p>
             </div>
             
-            <div class="dashboard-grid fade-in" style="animation-delay: 0.1s;">
-                <!-- Study Progress -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                        <h3>Study Progress</h3>
-                        <span style="background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-weight: 600; font-size: 0.875rem;">This Week</span>
+            <div class="roadmap-container fade-in" style="max-width: 600px; margin: 0 auto; position: relative; padding: 40px 0;">
+                <!-- Vertical Line -->
+                <div style="position: absolute; top: 60px; bottom: 60px; left: 50%; transform: translateX(-50%); width: 8px; background: var(--border-color); border-radius: 4px; z-index: 0;"></div>
+                <div style="position: absolute; top: 60px; bottom: 70%; left: 50%; transform: translateX(-50%); width: 8px; background: var(--success); border-radius: 4px; z-index: 1;"></div>
+                
+                <!-- Node 1: Completed -->
+                <div class="roadmap-node completed" style="position: relative; z-index: 2; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; cursor: pointer;" onclick="window.appRouter.navigate('games')">
+                    <div style="width: 80px; height: 80px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 0 #047857, 0 15px 20px rgba(0,0,0,0.1); border: 4px solid white; transform: translateX(-60px);">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                     </div>
-                    
-                    <div style="margin-bottom: 16px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
-                            <span>Vocabulary</span>
-                            <span style="font-weight: 600;">80%</span>
-                        </div>
-                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 80%; height: 100%; background: var(--primary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 16px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
-                            <span>Grammar</span>
-                            <span style="font-weight: 600;">65%</span>
-                        </div>
-                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 65%; height: 100%; background: var(--secondary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;">
-                            <span>Speaking</span>
-                            <span style="font-weight: 600;">40%</span>
-                        </div>
-                        <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 40%; height: 100%; background: var(--warning); border-radius: 4px;"></div>
-                        </div>
+                    <div style="background: white; padding: 8px 16px; border-radius: 12px; box-shadow: var(--shadow-sm); font-weight: 700; margin-top: 12px; transform: translateX(-60px); color: var(--success);">
+                        Unit 1: Introductions
+                        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500; text-align: center; margin-top: 4px;">Completed 🌟</div>
                     </div>
                 </div>
 
-                <!-- Upcoming Tasks -->
-                <div class="card">
-                    <h3>Upcoming Assignments</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 16px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 4px;">Present Tenses Quiz</h4>
-                                <span style="font-size: 0.85rem; color: var(--danger);">Due tomorrow</span>
-                            </div>
-                            <button style="background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Start</button>
-                        </li>
-                        <li style="padding: 16px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 4px;">Read "The Lost Dog"</h4>
-                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Friday</span>
-                            </div>
-                            <button style="background: var(--bg-main); color: var(--text-primary); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">View</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Recommended Content -->
-            <div style="margin-top: 32px;">
-                <h3 style="margin-bottom: 16px;">Recommended For You</h3>
-                <div class="dashboard-grid" style="margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 140px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white;">
-                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-                        </div>
-                        <div style="padding: 20px;">
-                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--success); text-transform: uppercase; letter-spacing: 0.5px;">Video Lesson</span>
-                            <h4 style="margin: 8px 0; font-size: 1.1rem;">Past Simple vs Continuous</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Master narrative tenses in 10 minutes.</p>
-                        </div>
+                <!-- Node 2: In Progress (Active) -->
+                <div class="roadmap-node active" style="position: relative; z-index: 2; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; cursor: pointer;" onclick="window.appRouter.navigate('games')">
+                    <div style="width: 90px; height: 90px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 0 var(--primary-hover), 0 15px 20px rgba(79, 70, 229, 0.4); border: 4px solid white; transform: translateX(60px); animation: pulse 2s infinite;">
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </div>
+                    <div style="background: white; padding: 12px 20px; border-radius: 12px; box-shadow: var(--shadow-md); font-weight: 800; margin-top: 12px; transform: translateX(60px); color: var(--primary); border: 2px solid var(--primary-light);">
+                        Unit 2: Present Tenses
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-align: center; margin-top: 4px;">Grammar & Vocabulary <br><span style="color: var(--warning);">In Progress</span></div>
                     </div>
                 </div>
+
+                <!-- Node 3: Locked -->
+                <div class="roadmap-node locked" style="position: relative; z-index: 2; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; cursor: not-allowed; opacity: 0.6;">
+                    <div style="width: 70px; height: 70px; background: var(--border-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 0 #cbd5e1; border: 4px solid white; transform: translateX(-40px);">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <div style="background: white; padding: 8px 16px; border-radius: 12px; box-shadow: var(--shadow-sm); font-weight: 600; margin-top: 12px; transform: translateX(-40px); color: var(--text-muted);">
+                        Unit 3: Daily Routines
+                    </div>
+                </div>
+
+                <!-- Node 4: Locked -->
+                <div class="roadmap-node locked" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; cursor: not-allowed; opacity: 0.6;">
+                    <div style="width: 70px; height: 70px; background: var(--border-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 0 #cbd5e1; border: 4px solid white; transform: translateX(40px);">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <div style="background: white; padding: 8px 16px; border-radius: 12px; box-shadow: var(--shadow-sm); font-weight: 600; margin-top: 12px; transform: translateX(40px); color: var(--text-muted);">
+                        Unit 4: Past Events (A2)
+                    </div>
+                </div>
+
             </div>
+            
+            <style>
+                @keyframes pulse {
+                    0% { box-shadow: 0 8px 0 var(--primary-hover), 0 0 0 0 rgba(79, 70, 229, 0.4); }
+                    70% { box-shadow: 0 8px 0 var(--primary-hover), 0 0 0 15px rgba(79, 70, 229, 0); }
+                    100% { box-shadow: 0 8px 0 var(--primary-hover), 0 0 0 0 rgba(79, 70, 229, 0); }
+                }
+                .roadmap-node { transition: transform 0.2s; }
+                .roadmap-node:not(.locked):hover { transform: scale(1.05); }
+                .roadmap-node:not(.locked):active > div:first-child { transform: translateY(4px) translateX(var(--tx)); box-shadow: 0 0 0 transparent !important; }
+            </style>
         `;
         return container;
     },

@@ -3,33 +3,33 @@
     --primary: #4f46e5;
     --primary-hover: #4338ca;
     --primary-light: #e0e7ff;
-    
+
     --secondary: #ec4899;
     --secondary-hover: #db2777;
-    
+
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
-    
+
     --bg-main: #f8fafc;
     --bg-card: #ffffff;
     --bg-sidebar: #ffffff;
-    
+
     --text-primary: #0f172a;
     --text-secondary: #64748b;
     --text-muted: #94a3b8;
-    
+
     --border-color: #e2e8f0;
-    
+
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
-    
+
     /* Shadows & Transitions */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    
+
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
 }
@@ -47,7 +47,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     font-weight: 700;
 }
@@ -223,8 +228,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .fade-in {
@@ -257,4 +269,116 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.25rem;
     margin-bottom: 16px;
     color: var(--text-primary);
+}
+
+/* Mobile & Tablet Responsiveness */
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background var(--transition-fast);
+}
+
+.menu-btn:hover {
+    background: var(--bg-main);
+}
+
+.menu-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        height: 100%;
+        transition: left var(--transition-normal);
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .top-header {
+        padding: 0 16px;
+    }
+
+    .search-bar {
+        width: auto;
+        flex: 1;
+        max-width: 200px;
+    }
+
+    .content-area {
+        padding: 16px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Make story/article cards stack on mobile */
+    .card[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+
+    /* Center text inside stacked cards */
+    .card[style*="display: flex"]>div:first-child {
+        width: 100% !important;
+        height: 200px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar input {
+        display: none;
+    }
+
+    .search-bar {
+        width: 40px;
+        padding: 8px;
+        justify-content: center;
+        background: transparent;
+        border: none;
+    }
+
+    .points-badge {
+        display: none;
+        /* Hide points on very small screens to save space */
+    }
 }
